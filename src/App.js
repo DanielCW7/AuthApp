@@ -15,6 +15,15 @@ function App() {
         >
           Learn React
         </a>
+
+        <h1> api calls here: </h1>
+
+        <div>
+          <h3> GET </h3>
+          {/* for test purposes */}
+          {/* API GET calls and loader here */}
+          { false ? <span> nothing </span> : <span> ? </span>}
+        </div>
       </header>
     </div>
   );
