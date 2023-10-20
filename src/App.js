@@ -36,7 +36,7 @@ function App() {
     } 
     
     // setTimeout(() => handleFetch() , 1000)
-    handleFetch()
+    // handleFetch()
   }, [])
 
   return (
@@ -55,8 +55,19 @@ function App() {
 
         <h1> api calls here: </h1>
 
+      {/* GET */}
         <div>
           <h3> GET users </h3>
+          {/* <button onClick={handleFetch}> get user </button> */}
+          <ul>
+            { isLoading ? <Loader /> : users }            
+          </ul>
+        </div>
+
+
+      {/* POST */}
+        <div>
+          <h3> POST users </h3>
           {/* <button onClick={handleFetch}> get user </button> */}
           <ul>
             { isLoading ? <Loader /> : users }            
