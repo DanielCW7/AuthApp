@@ -6,13 +6,12 @@ const api = axios.create({ baseURL: "https://jsonplaceholder.typicode.com" })
 
 
 // GET
-export const getUsers = async () => {
-  return api.get("/users")
-   
+export const getPosts = async () => {
+  return api.get("/posts")
 }
 
 // POST 
-export const postUsers = async (userData) => {
-    return api.post("/user", userData)
+export const addPost = async (postData) => {
+    return api.post("/posts", postData)
 }
 

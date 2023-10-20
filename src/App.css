@@ -49,3 +49,17 @@
   background-color: rgba(255, 0, 0, 0.493);
   color: red;
 }
+
+ul {
+  display: inline-flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+li {
+  color: gray;
+}
+
+main {
+  padding: 50px 20px;
+}
