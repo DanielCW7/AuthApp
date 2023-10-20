@@ -1,7 +1,44 @@
 import logo from './logo.svg';
+import Loader from "./components/loader";
+import { getUsers } from './axiosFunctions.js';
 import './App.css';
-
+import { useEffect, useState } from 'react';
+import Error from "./components/error"
 function App() {
+  const [isLoading, setLoading] = useState(true);
+  const [users, setUsers] = useState([])
+
+
+
+  useEffect(() => {
+    const handleFetch = async () => {
+      try {
+        getUsers()
+        .then(res => {
+
+          const list = res.data;
+          const everyone = list.map(element => {
+            return <li> {element.name} </li>
+          });
+
+          setUsers(everyone)
+        })
+      }
+      catch(error) {
+        console.error(error)
+        setUsers(<Error />)
+      }
+      finally {
+        // set loading to false once either the request is approved or fails
+        console.log("done fetching")
+        setLoading(false)
+      }
+    } 
+    
+    // setTimeout(() => handleFetch() , 1000)
+    handleFetch()
+  }, [])
+
   return (
     <div className="App">
       <header className="App-header">
@@ -19,11 +56,13 @@ function App() {
         <h1> api calls here: </h1>
 
         <div>
-          <h3> GET </h3>
-          {/* for test purposes */}
-          {/* API GET calls and loader here */}
-          { false ? <span> nothing </span> : <span> ? </span>}
+          <h3> GET users </h3>
+          {/* <button onClick={handleFetch}> get user </button> */}
+          <ul>
+            { isLoading ? <Loader /> : users }            
+          </ul>
         </div>
+
       </header>
     </div>
   );
