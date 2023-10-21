@@ -20,7 +20,7 @@ function App() {
           console.log(res)
           const list = res.data;
           const everyone = list.map(element => {
-            return <li> {element.title} </li>
+            return <li> {element.name} </li>
           });
 
           setPosts(everyone)
@@ -42,28 +42,26 @@ function App() {
   }, [])
 
 
-  // const addPost = (event) => {
-  //   event.preventDefault()
-  //   try {
-  //     addPost({
-  //       body: JSON.stringify({
-  //         title: "foo",
-  //         body: "bar",
-  //         userId: 1
-  //       }),
-  //       headers: {
-  //         "Content-Type": "application/json; charset=UTF-8"
-  //       }
-  //       .then(res => {
-  //         console.log(res)
-  //       })
-  //     })
-  //   } catch(error) {
-  //     console.error(error)
-  //   } finally {
-  //     console.log("done")
-  //   }
-  // }
+  const handleSubmit = (event) => {
+    // replace with form field data - submit works as intended
+    event.preventDefault()
+    try {
+      addPost({
+        name: "name",
+        data: {
+          year: 2012,
+          price: 100,
+          capacity: "a lot",
+          color: "bloo"
+        } 
+      })
+      .then(res => console.log(res))
+    } catch(error) {
+      console.error(error)
+    } finally {
+      console.log("done")
+    }
+  }
 
 
   return (
@@ -73,7 +71,7 @@ function App() {
 
 
         <h1> Github Oauth app </h1>
-        <h2> note: HTTP requests besides GET do not work with this API </h2>
+        <sub> https://api.restful-api.dev/ </sub>
 
 
 
@@ -93,7 +91,7 @@ function App() {
       {/* POST */}
         <div>
           <h3> POST </h3>
-          <form onSubmit={addPost}>
+          <form onSubmit={handleSubmit}>
             <p> add user below </p>
             <input type="text"/>
             <button type="submit"> submit </button>

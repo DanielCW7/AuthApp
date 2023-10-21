@@ -2,16 +2,16 @@ import axios from "axios";
 // file for axios functions
 
 
-const api = axios.create({ baseURL: "https://jsonplaceholder.typicode.com" })
+const api = axios.create({ baseURL: "https://api.restful-api.dev/" })
 
 
 // GET
 export const getPosts = async () => {
-  return api.get("/posts")
+  return api.get("/objects")
 }
 
 // POST 
 export const addPost = async (postData) => {
-    return api.post("/posts", postData)
+    return api.post("/objects", postData)
 }
 
