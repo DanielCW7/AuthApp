@@ -3,7 +3,9 @@ import Loader from "./components/loader";
 import { getPosts, addPost } from './axiosFunctions.js';
 import './App.css';
 import { useEffect, useState } from 'react';
-import Error from "./components/error"
+import Error from "./components/error";
+
+
 function App() {
   const [isLoading, setLoading] = useState(true);
   const [posts, setPosts] = useState([])
@@ -68,13 +70,8 @@ function App() {
     <body className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-
-
-        <h1> Github Oauth app </h1>
+        <h1> API app </h1>
         <sub> https://api.restful-api.dev/ </sub>
-
-
-
       </header>      
       
       {/* GET */}
@@ -93,10 +90,12 @@ function App() {
           <h3> POST </h3>
           <form onSubmit={handleSubmit}>
             <p> add user below </p>
-            <input type="text"/>
+            <input type="text" id="userAdd" />
             <button type="submit"> submit </button>
           </form>
         </div>
+
+
       </main>
 
     </body>
