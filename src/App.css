@@ -71,3 +71,23 @@ main {
   display: inline-flex;
   flex-direction: column;
 }
+
+#putForm li {
+  display: flex;
+  justify-content: space-between;
+  border: solid gray 1px;
+  padding: 5px 15px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+#putForm div {
+  margin: auto 0px;
+}
+
+#putForm p,
+#putForm input {
+  padding-right: 30px;
+  margin: 15px
+}
+

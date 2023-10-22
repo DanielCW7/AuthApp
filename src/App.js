@@ -4,7 +4,7 @@ import { getPosts, addPost, updatePost } from './axiosFunctions.js';
 import './App.css';
 import { useEffect, useState } from 'react';
 import Error from "./components/error";
-
+import ListItem from './components/listItem';
 
 function App() {
   
@@ -28,12 +28,7 @@ function App() {
           });
 
           const putList = list.map(element => {
-            return (
-              <li>
-                <input type="radio" name="item" value={element.name} />
-                <label> {element.name} </label>                
-              </li>
-            )
+            return <ListItem name={element.name} />
           })
           setPosts(items)
           putPosts(putList)
@@ -122,14 +117,16 @@ function App() {
           </form>
         </div>
 
+
       {/* PUT/PATCH (UPDATE) */}
         <div>
-          <h3> PUT </h3>
+          <h3> PUT & DELETE </h3>
           <form id="putForm" onSubmit={handlePut}> 
             <p> update post </p>
             <ul>
               { isLoading ? <Loader /> : postList }   
-            </ul>         
+            </ul> 
+            <button type="submit"> submit changes </button>        
             
             {/* 
               need to be able to select an item, and then edit the contents - then submit the changes 
