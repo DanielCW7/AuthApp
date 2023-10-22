@@ -50,28 +50,24 @@
   color: red;
 }
 
-.popup {
-  padding: 10px 25px;
-  background-color: #282c34;
-  border: 5px;
-  color: white;
-  position: fixed;
-  z-index: 10;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 ul {
   display: inline-flex;
   flex-direction: column;
   text-align: left;
+  padding: 0px;
 }
 
 li {
   color: gray;
+  list-style-type: none;
 }
 
 main {
   padding: 50px 20px;
+}
+
+#putForm,
+#postForm {
+  display: inline-flex;
+  flex-direction: column;
 }

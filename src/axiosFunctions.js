@@ -12,6 +12,11 @@ export const getPosts = async () => {
 
 // POST 
 export const addPost = async (postData) => {
-    return api.post("/objects", postData)
+  return api.post("/objects", postData)
+}
+
+// PUT
+export const updatePost = async (postData) => {
+  return api.put(`/objects/${postData?.id ?? ""}`, postData)
 }
 

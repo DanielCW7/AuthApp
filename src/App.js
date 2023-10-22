@@ -1,52 +1,79 @@
 import logo from './logo.svg';
 import Loader from "./components/loader";
-import { getPosts, addPost } from './axiosFunctions.js';
+import { getPosts, addPost, updatePost } from './axiosFunctions.js';
 import './App.css';
 import { useEffect, useState } from 'react';
 import Error from "./components/error";
 
 
 function App() {
+  
   const [isLoading, setLoading] = useState(true);
   const [posts, setPosts] = useState([])
+  const [postList, putPosts] = useState([])
 
 
-
-  // displays posts onload
   useEffect(() => {
+
+    // for only GET requests
     const handleFetch = async () => {
       try {
         getPosts()
         .then(res => {
-
           console.log(res)
+
           const list = res.data;
-          const everyone = list.map(element => {
+          const items = list.map(element => {
             return <li> {element.name} </li>
           });
 
-          setPosts(everyone)
+          const putList = list.map(element => {
+            return (
+              <li>
+                <input type="radio" name="item" value={element.name} />
+                <label> {element.name} </label>                
+              </li>
+            )
+          })
+          setPosts(items)
+          putPosts(putList)
         })
-      }
-      catch(error) {
+      } catch(error) {
         console.error(error)
         setPosts(<Error />)
-      }
-      finally {
+      } finally {
         // set loading to false once either the request is approved or fails
-        console.log("done fetching")
+        console.log("GET has finished")
         setLoading(false)
       }
     } 
-    
-    // setTimeout(() => handleFetch() , 1000)
+
+
     handleFetch()
   }, [])
 
+    // for only PUT requests
+    const handlePut = (event) => {
+      event.preventDefault()
+      console.log(event)
+      try {
+        updatePost()
+        .then(res => {
+          console.log(res)
+        })
+      } catch (error) {
+        console.log(error)
+      } finally {
+        console.log("PUT has finished")
+        setLoading(false)
+      }
+    }
 
   const handleSubmit = (event) => {
     // replace with form field data - submit works as intended
     event.preventDefault()
+
+    // be sure to check if field is not empty upon submit
     try {
       addPost({
         name: "name",
@@ -54,7 +81,7 @@ function App() {
           year: 2012,
           price: 100,
           capacity: "a lot",
-          color: "bloo"
+          color: "blue"
         } 
       })
       .then(res => console.log(res))
@@ -77,7 +104,7 @@ function App() {
       {/* GET */}
       <main>
         <div>
-          <h3> GET posts </h3>
+          <h3> GET </h3>
           {/* <button onClick={handleFetch}> get user </button> */}
           <ul>
             { isLoading ? <Loader /> : posts }            
@@ -88,13 +115,29 @@ function App() {
       {/* POST */}
         <div>
           <h3> POST </h3>
-          <form onSubmit={handleSubmit}>
+          <form id="postForm" onSubmit={handleSubmit}>
             <p> add user below </p>
             <input type="text" id="userAdd" />
             <button type="submit"> submit </button>
           </form>
         </div>
 
+      {/* PUT/PATCH (UPDATE) */}
+        <div>
+          <h3> PUT </h3>
+          <form id="putForm" onSubmit={handlePut}> 
+            <p> update post </p>
+            <ul>
+              { isLoading ? <Loader /> : postList }   
+            </ul>         
+            
+            {/* 
+              need to be able to select an item, and then edit the contents - then submit the changes 
+              [EDIT] [CANCEL] [CONFIRM CHANGES] [DISCARD CHANGES]
+            */}
+            
+          </form> 
+        </div>
 
       </main>
 
