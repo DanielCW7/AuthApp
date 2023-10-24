@@ -15,7 +15,7 @@ const ListItem = (item) => {
     // DELETE http request
     const remove = (item) => {
         const id = item?.props?.id ?? ""
-        // need id to make the http request: https://api.restful-api.dev/objects/{id}
+
         try {
             deletePost(id)
             .then(res => console.log(res))
@@ -33,9 +33,6 @@ const ListItem = (item) => {
         const id = item?.props?.id ?? ""
 
         setToggle(prevToggle => !prevToggle)        
-        // need id to make the http request: https://api.restful-api.dev/objects/{id}
-        // pass the "name" and "data: {...}" props in the request
-        // or partially update using PATCH, only passing the changed prop
         console.log(item, id)
     }
 
