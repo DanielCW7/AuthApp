@@ -5,28 +5,31 @@ const ListItem = (item) => {
 
     const [toggle, setToggle] = useState(true);
 
-    const edit = () => {
-        // toggle edit function
+    const remove = (item) => {
+        // DELETE http request
         setToggle(prevToggle => !prevToggle)
+        console.log(item)
     }
 
-    const remove = () => {
-        // DELETE http request here
-        console.log("removed")
+    const confirmChange = (item) => {
+        // PUT http request
+        setToggle(prevToggle => !prevToggle)
+        console.log(item)
     }
-
     return (
         <li>
+
+            {/* onsubmit to capture the form input here - used for the URL params */}
             { toggle ? <p> {item.name} </p> : <input placeholder={item.name} type="text" /> }
             { toggle ? 
                 <div>
-                    <span onClick={edit}> edit </span>
-                    <span onClick={remove}> delete </span>                
+                    <span onClick={() => setToggle(prevToggle => !prevToggle)}> edit </span>            
+                    <span onClick={remove}> delete </span>              
                 </div>  
                 : 
                 <div>
-                    <span onClick={edit}> confirm? </span>
-                    <span onClick={remove}> cancel </span>                
+                    <span onClick={confirmChange(item)}> confirm </span>            
+                    <span onClick={() => setToggle(prevToggle => !prevToggle)}> cancel </span>            
                 </div>
             }
 

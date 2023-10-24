@@ -28,7 +28,7 @@ function App() {
           });
 
           const putList = list.map(element => {
-            return <ListItem name={element.name} />
+            return <ListItem name={element.name} data={element.data} />
           })
           setPosts(items)
           putPosts(putList)
