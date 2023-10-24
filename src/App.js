@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import Loader from "./components/loader";
-import { getPosts, addPost, updatePost } from './axiosFunctions.js';
+import { getPosts, addPost, updatePost, deletePost } from './axiosFunctions.js';
 import './App.css';
 import { useEffect, useState } from 'react';
 import Error from "./components/error";
@@ -23,12 +23,13 @@ function App() {
           console.log(res)
 
           const list = res.data;
+          console.log(res.data)
           const items = list.map(element => {
-            return <li> {element.name} </li>
+            return <li> {element.title} </li>
           });
 
           const putList = list.map(element => {
-            return <ListItem name={element.name} data={element.data} />
+            return <ListItem title={element.title} props={element} />
           })
           setPosts(items)
           putPosts(putList)
@@ -93,7 +94,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1> API app </h1>
-        <sub> https://api.restful-api.dev/ </sub>
+        <sub> https://jsonplaceholder.typicode.com/ </sub>
       </header>      
       
       {/* GET */}
@@ -126,7 +127,7 @@ function App() {
             <ul>
               { isLoading ? <Loader /> : postList }   
             </ul> 
-            <button type="submit"> submit changes </button>        
+            {/* <button type="submit"> submit changes </button>         */}
             
             {/* 
               need to be able to select an item, and then edit the contents - then submit the changes 
