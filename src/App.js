@@ -1,9 +1,8 @@
 import logo from './logo.svg';
 import Loader from "./components/loader";
-import { getPosts, addPost, updatePost, deletePost } from './axiosFunctions.js';
+import { getPosts, addPost, updatePost } from './axiosFunctions.js';
 import './App.css';
 import { useEffect, useState } from 'react';
-import Error from "./components/error";
 import ListItem from './components/listItem';
 
 function App() {
@@ -36,7 +35,6 @@ function App() {
         })
       } catch(error) {
         console.error(error)
-        setPosts(<Error />)
       } finally {
         // set loading to false once either the request is approved or fails
         console.log("GET has finished")
@@ -66,12 +64,13 @@ function App() {
     }
 
   const handleSubmit = (event) => {
-    // replace with form field data - submit works as intended
+    // replace with form field data - submit works as intended => body object should be in axiosfunctions file*
     event.preventDefault()
 
     // be sure to check if field is not empty upon submit
     try {
       addPost({
+        // *
         name: "name",
         data: {
           year: 2012,

@@ -15,25 +15,33 @@ const ListItem = (item) => {
     // DELETE http request
     const remove = (item) => {
         const id = item?.props?.id ?? ""
-
         try {
             deletePost(id)
             .then(res => console.log(res))
         } catch (error) {
             console.error(error)
         } finally {
-            console.log("done")
+            console.log("DELETE has finished")
         }
         console.log(item, id)
     }
 
 
     // PUT http request
-    const confirmChange = (item) => {
+    const confirmChange = (item, text) => {
         const id = item?.props?.id ?? ""
-
+        
+        try {
+            updatePost(id, text)
+            .then(res => console.log(res))
+        } catch(error) {
+            console.error(error)
+        } finally {
+            console.log("PUT has finished")
+        }
+        
         setToggle(prevToggle => !prevToggle)        
-        console.log(item, id)
+        console.log(item, id, text)
     }
 
 
@@ -41,7 +49,7 @@ const ListItem = (item) => {
         <li>
 
             {/* onsubmit to capture the form input here - used for the URL params */}
-            { toggle ? <p> {item.title} </p> : <input placeholder={item.title} type="text" /> }
+            { toggle ? <p> {item.title} </p> : <input placeholder={item.title} type="text" id="textBox" /> }
             { toggle ? 
                 <div>
                     <span onClick={edit}> edit </span>            
@@ -49,7 +57,10 @@ const ListItem = (item) => {
                 </div>  
                 : 
                 <div>
-                    <span onClick={() => confirmChange(item)}> confirm </span>            
+                    <span onClick={() => {
+                        const text = document.querySelector("#textBox").value
+                        confirmChange(item, text)
+                    }}> confirm </span>            
                     <span onClick={edit}> cancel </span>            
                 </div>
             }

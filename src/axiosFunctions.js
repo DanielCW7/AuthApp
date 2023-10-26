@@ -17,11 +17,14 @@ export const addPost = async (postData) => {
 }
 
 // PUT
-export const updatePost = async (postData) => {
-  return api.put(`/posts/${postData?.id ?? ""}`, postData)
+export const updatePost = async (id, text) => {
+  const newText = text
+  return api.put(`/posts/${id}`, {
+    "body": newText
+  })
 }
 
 // DELETE
 export const deletePost = async (id) => {
-  return api.delete(`/posts/${id}`)
+  return api.patch(`/posts/${id}`)
 }
