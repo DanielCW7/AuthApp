@@ -16,6 +16,7 @@ root.render(
         redirect_uri: window.location.origin
       }}
     >
+      {/* rotate client IDs and secrets into a process.env file before deployment */}
       <BrowserRouter>
         <App />
       </BrowserRouter>      
