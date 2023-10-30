@@ -1,7 +1,6 @@
 import logo from '../logo.svg';
 import Loader from "../components/loader";
 import { getPosts, addPost, updatePost } from '../axiosFunctions.js';
-import '../App.css';
 import { useEffect, useState } from 'react';
 import ListItem from '../components/listItem';
 
