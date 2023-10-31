@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import LogoutButton from "./logout";
 
 
 const Navbar = () => {
@@ -6,6 +7,7 @@ const Navbar = () => {
         <div>
             <Link to="/"> Home </Link>
             <Link to="/login"> Login </Link>
+            <LogoutButton />
         </div>
     )
 }
