@@ -1,5 +1,9 @@
 import { useState } from "react"
-import { updatePost, deletePost } from '../axiosFunctions.js';
+import axios from "axios";
+
+
+const api = axios.create({ baseURL: "https://jsonplaceholder.typicode.com/" })
+
 
 // list items to be edited or deleted in the PUT/DELETE section
 const ListItem = (item) => {
@@ -16,6 +20,10 @@ const ListItem = (item) => {
     const remove = (item) => {
         const id = item?.props?.id ?? ""
         try {
+            const deletePost = async (id) => {
+                return api.patch(`/posts/${id}`)
+            }
+
             deletePost(id)
             .then(res => console.log(res))
         } catch (error) {
@@ -32,6 +40,13 @@ const ListItem = (item) => {
         const id = item?.props?.id ?? ""
         
         try {
+            const updatePost = async (id, text) => {
+                const newText = text
+                return api.put(`/posts/${id}`, {
+                  "body": newText
+                })
+            }
+
             updatePost(id, text)
             .then(res => console.log(res))
         } catch(error) {

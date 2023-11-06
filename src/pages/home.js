@@ -1,9 +1,10 @@
 import logo from '../logo.svg';
 import Loader from "../components/loader";
-import { getPosts, addPost, updatePost } from '../axiosFunctions.js';
 import { useEffect, useState } from 'react';
 import ListItem from '../components/listItem';
+import axios from "axios";
 
+const api = axios.create({ baseURL: "https://jsonplaceholder.typicode.com/" })
 
 
 const Home = () => {
@@ -18,8 +19,11 @@ const Home = () => {
       // for only GET requests
       const handleFetch = async () => {
         try {
-          getPosts()
-          .then(res => {
+          const getPosts = async () => {
+            return api.get("/posts")
+          }  
+
+          getPosts().then(res => {
             console.log(res)
   
             const list = res.data;
@@ -52,6 +56,13 @@ const Home = () => {
         event.preventDefault()
         console.log(event)
         try {
+          const updatePost = async (id, text) => {
+            const newText = text
+            return api.put(`/posts/${id}`, {
+              "body": newText
+            })
+          }
+          
           updatePost()
           .then(res => {
             console.log(res)
@@ -70,6 +81,10 @@ const Home = () => {
   
       // be sure to check if field is not empty upon submit
       try {
+        const addPost = async (postData) => {
+          return api.post("/posts", postData)
+        }
+
         addPost({
           // *
           name: "name",
