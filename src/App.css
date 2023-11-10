@@ -91,3 +91,7 @@ main {
   margin: 15px
 }
 
+.itemText {
+  max-width: 200px
+}
+

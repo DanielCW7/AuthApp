@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axios from "axios";
+import { Button } from "@mui/material";
 
 
 const api = axios.create({ baseURL: "https://jsonplaceholder.typicode.com/" })
@@ -64,19 +65,19 @@ const ListItem = (item) => {
         <li>
 
             {/* onsubmit to capture the form input here - used for the URL params */}
-            { toggle ? <p> {item.title} </p> : <input placeholder={item.title} type="text" id="textBox" /> }
+            { toggle ? <p className="itemText"> {item.title} </p> : <input placeholder={item.title} type="text" id="textBox" /> }
             { toggle ? 
                 <div>
-                    <span onClick={edit}> edit </span>            
-                    <span onClick={() => remove(item)}> delete </span>              
+                    <Button onClick={edit}> edit </Button>            
+                    <Button onClick={() => remove(item)}> delete </Button>              
                 </div>  
                 : 
                 <div>
-                    <span onClick={() => {
+                    <Button onClick={() => {
                         const text = document.querySelector("#textBox").value
                         confirmChange(item, text)
-                    }}> confirm </span>            
-                    <span onClick={edit}> cancel </span>            
+                    }}> confirm </Button>            
+                    <Button onClick={edit}> cancel </Button>            
                 </div>
             }
 

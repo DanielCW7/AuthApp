@@ -3,6 +3,7 @@ import Loader from "../components/loader";
 import { useEffect, useState } from 'react';
 import ListItem from '../components/listItem';
 import axios from "axios";
+import { Button } from '@mui/material';
 
 const api = axios.create({ baseURL: "https://jsonplaceholder.typicode.com/" })
 
@@ -129,7 +130,7 @@ const Home = () => {
                 <form id="postForm" onSubmit={handleSubmit}>
                     <p> add user below </p>
                     <input type="text" id="userAdd" />
-                    <button type="submit"> submit </button>
+                    <Button type="submit"> submit </Button>
                 </form>
                 </div>
 
