@@ -137,14 +137,13 @@ const Home = () => {
 
             {/* PUT/PATCH (UPDATE) */}
                 <div>
-                <h3> PUT & DELETE </h3>
-                <form id="putForm" onSubmit={handlePut}> 
-                    <p> update post </p>
-                    <ul>
-                    { isLoading ? <Loader /> : postList }   
-                    </ul> 
-                    
-                </form> 
+                  <h3> PUT & DELETE </h3>
+                  <form id="putForm" onSubmit={handlePut}> 
+                      <p> update post </p>
+                      <ul>
+                      { isLoading ? <Loader /> : postList }   
+                      </ul>                   
+                  </form> 
                 </div>
 
             </main>
